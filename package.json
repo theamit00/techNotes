@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node server",
-    "dev": "nodemon server"
+    "start": "node --env-file=.env server",
+    "dev": "nodemon --env-file=.env server"
   },
   "keywords": [],
   "author": "",
