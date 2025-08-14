@@ -6,7 +6,7 @@ import { createPath } from "../utils/path.js";
 
 const logEvents = async (message, logFileName) => {
   const dateTime = format(new Date(), "yyyy-MM-dd\tHH:mm:ss");
-  const logItem = `${dateTime}\t${uuid()}\t${message}`;
+  const logItem = `${dateTime}\t${uuid()}\t${message}\n`;
   const outputFilePath = createPath("logs", logFileName);
 
   try {
