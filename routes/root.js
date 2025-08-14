@@ -1,5 +1,5 @@
 import express from "express";
-import {pathToFile} from "../util/path.js";
+import {pathToFile} from "../utils/path.js";
 const router = express.Router();
 
 router.get(/^\/$|\/index(.html)?/, (req, res) => {
