@@ -2,12 +2,12 @@ import path from "path"
 
 const rootDir = path.resolve();
 
-const pathToFile = (...filePath)=>{
+const createPath = (...filePath)=>{
   
   return path.join(rootDir, ...filePath);
 }
 
 export {
   rootDir,
-  pathToFile
+  createPath
 }

@@ -1,12 +1,17 @@
 import express from "express";
 import path from "path"
 import root from "./routes/root.js";
+import {logger} from "./middleware/logger.js";
+import errorHandler from "./middleware/error.js";
 
 const app = express();
 
 const PORT = process.env.PORT || 8080;
 
+app.use(logger)
+
 // Global middleware
+app.use(express.json()) // to recieve and parse the json data
 app.use(express.static(path.join(path.resolve(), 'public')))
 
 app.use('/', root)
@@ -24,10 +29,7 @@ app.all(/.*/,(req,res)=>{
 })
 
 // Handle server side error
-app.use((err, req,res,next)=>{
-  console.log(err)
-  res.send('Something went wrong!')
-})
+app.use(errorHandler);
 
 app.listen(PORT, ()=>{
   console.log(`Server is runing on http://localhost:${PORT}`);
