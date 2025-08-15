@@ -1,4 +1,4 @@
-import {logEvents} from "./logger.js";
+import { logEvents } from "./logger.js";
 
 const errorHandler = (err, req, res, next) => {
   logEvents(
@@ -7,11 +7,10 @@ const errorHandler = (err, req, res, next) => {
   );
 
   console.log(err.stack);
-
-  const status = res.statusCode || 500; // server error
-  const message = err.message || "Somthing went wrong!";
+  const status = err.statusCode || 500; // server error
+  const message = status < 500 ? err.message : "Internal server error";
 
   res.status(status).json({ success: false, message });
 };
 
-export default errorHandler
+export default errorHandler;

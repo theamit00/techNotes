@@ -23,7 +23,11 @@ app.use(express.json()); // to recieve and parse the json data
 app.use(cookieParser());
 app.use(express.static(path.join(path.resolve(), "public"))); // to serve static file
 
+// import routes
+import userRoutes from "./routes/userRoutes.js";
+
 app.use("/", root);
+app.use("/users", userRoutes);
 
 // handle invalid routes
 app.all(/.*/, (req, res) => {
@@ -47,7 +51,10 @@ mongoose.connection.once("open", () => {
   });
 });
 
-mongoose.connection.on('error',(err)=>{
+mongoose.connection.on("error", (err) => {
   console.log(err);
-  logEvents(`${err.no} : ${err.code}\t${err.syscall}\t${err.hostname}`, 'mongoErrLog.log')
-})
+  logEvents(
+    `${err.no} : ${err.code}\t${err.syscall}\t${err.hostname}`,
+    "mongoErrLog.log"
+  );
+});
