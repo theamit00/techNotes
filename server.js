@@ -8,7 +8,6 @@ import cors from "cors";
 import corsOptions from "./config/corsOptions.js";
 import connectDB from "./config/dbConn.js";
 import mongoose from "mongoose";
-import {error} from "console";
 
 const app = express();
 
@@ -22,7 +21,7 @@ app.use(cors(corsOptions));
 // Global middleware
 app.use(express.json()); // to recieve and parse the json data
 app.use(cookieParser());
-app.use(express.static(path.join(path.resolve(), "public")));
+app.use(express.static(path.join(path.resolve(), "public"))); // to serve static file
 
 app.use("/", root);
 
