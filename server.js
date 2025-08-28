@@ -25,9 +25,11 @@ app.use(express.static(path.join(path.resolve(), "public"))); // to serve static
 
 // import routes
 import userRoutes from "./routes/userRoutes.js";
+import noteRoutes from "./routes/noteRoutes.js";
 
 app.use("/", root);
 app.use("/users", userRoutes);
+app.use("/notes", noteRoutes);
 
 // handle invalid routes
 app.all(/.*/, (req, res) => {
